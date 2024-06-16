@@ -1,0 +1,49 @@
+version: "3.8"
+services:
+  bot:
+    build:
+      context: ./bot
+      dockerfile: Dockerfile
+    container_name: "bot_container"
+    environment:
+      - BOT_TOKEN=${BOT_TOKEN}
+      - DB_USER=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_HOST=${DB_HOST}
+      - DB_DATABASE=${DB_DATABASE}
+      - DELTA_CHECK=${DELTA_CHECK}
+    depends_on:
+      - db
+    env_file:
+      - .env
+    networks:
+      custom_network:
+        ipv4_address: 172.20.0.21
+  db:
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+      args:
+        - DB_USER=${DB_USERNAME}
+        - DB_PASSWORD=${DB_PASSWORD}
+        - DB_DATABASE=${DB_DATABASE}
+        - DB_PORT=${DB_PORT}
+    container_name: "db_container"
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=${DB_POSTGRES_PASSWORD}
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_INITDB_ARGS="--auth-host=scram-sha-256"
+    env_file:
+      - .env
+    networks:
+      custom_network:
+        ipv4_address: 172.20.0.22
+
+networks:
+  custom_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
