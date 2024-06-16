@@ -13,4 +13,5 @@ To start a bot you have to install docker software. Then just run
 ```
 sudo docker compose build --no-cache && sudo docker compose up
 ```
-That's all
+### Note
+One of the main features of this bot is that it can track multiple chat simultaniously.
