@@ -8,6 +8,8 @@ The task was to create a bot which monitors the state of the channel/group and n
 Create a channel/group. Now add the bot to channel and make it administrator. After doing this start the private chat with the bot (/start, /me) and execute '/load' command to load a txt file that would contain the list of usernames (thos starting with @) allowed to be in a chat.
 After that you can invite users and bot will track them.
 
+Every admin in the channel shoud start (/start) the bot to be able to receive the messages.
+
 ## How to start it?
 To start a bot you have to install docker software. Then just run 
 ```
