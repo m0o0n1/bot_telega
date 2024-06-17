@@ -21,3 +21,5 @@ I don't know why but it is a probability that `docker compose up` would fail to 
 One of the main features of this bot is that it can track multiple chat simultaniously.
 
 Also it saves the previous state so, when the bot is restarted the data is not lost.
+
+The settings are stored in .env file
