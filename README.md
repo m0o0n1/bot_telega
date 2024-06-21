@@ -15,6 +15,12 @@ To start a bot you have to install docker software. Then just run
 ```
 sudo docker compose build --no-cache && sudo docker compose up
 ```
+## How it works?
+
+There is 2 containers: for python bot and for PostgreSQL database. The bot needs this database to store the allowed usernames in the database $DB_NAME, which consists of tables representing every chat. The table name for the specific chat is a unique chat_id from telegram (for example, if the chat_id = -1337 then the table_name would be _1337).
+
+Also there is a table for storing a previous state of the bot (to handle the restart of a bot, when the data is lost).
+
 ### Notes
 I don't know why but it is a probability that `docker compose up` would fail to run first time. Just rerun it.
 
